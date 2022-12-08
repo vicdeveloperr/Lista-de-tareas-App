@@ -16,8 +16,9 @@ function ConfigurarTareas({ estadoTarea }) {
 		<>
 			<form className="mt-5 sm:flex" onSubmit={agregarTarea}>
 				<input 
+					id="inputDetallesTarea"
 					placeholder="Agregar detalles" 
-					className="w-full border-[1px] border-grisClaro p-2 rounded-xl focus:outline-[1px] outline-azulClaro" 
+					className="w-full border-[1px] border-rojo p-2 rounded-xl focus:outline-[1px] outline-azulClaro" 
 					onChange={inputValueChange} 
 					value={valorInput}/>
 				<button 
@@ -32,16 +33,20 @@ function ConfigurarTareas({ estadoTarea }) {
 
 	function agregarTarea(e) {
 		e.preventDefault();
+		let tareasActivas = leerTareasActivas();
 		// Actualizamos las tareas
-		leerTareas.push(valorInput);
-		actualizarTareasActivasGuardadas(leerTareas);
-		actualizarTareas(leerTareas);
-		actualizarValorInput("");
-		root.render(
-		  <BrowserRouter>
-		  	<App />
-		  </BrowserRouter>
-		);
+		let verificarTareaRepetida = tareasActivas.find(tareaActiva => valorInput == tareaActiva);
+		if(!verificarTareaRepetida) {
+			leerTareas.push(valorInput);
+			actualizarTareasActivasGuardadas(leerTareas);
+			actualizarTareas(leerTareas);
+			actualizarValorInput("");
+			root.render(
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+			);
+		}
 	}
 
 	function inputValueChange(e) {
