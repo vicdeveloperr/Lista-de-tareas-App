@@ -19,7 +19,7 @@ export default function ListarTareas({ tareas, actualizarTareas, estadoTarea, ac
 	}else if(estadoTarea == "activo") {
 		return (
 			<div className="mt-5">
-				<ListarTareasActivas tareas={listaTareasActivas} tareas={listaTareasActivas} actualizadorTareas={actualizarTareas} tareasCompletadas={listaTareasCompletadas} /> 
+				<ListarTareasActivas tareas={listaTareasActivas} actualizadorTareas={actualizarTareas} tareasCompletadas={listaTareasCompletadas} /> 
 			</div>
 		);
 	}else if(estadoTarea == "completado") {

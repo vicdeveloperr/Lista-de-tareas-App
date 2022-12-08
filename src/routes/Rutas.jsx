@@ -1,6 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom"
 import ConfigurarTareas from "../components/layouts/ConfigurarTareas"
-import ListarTareas from "../components/common/ListarTareas"
 import EliminarTareasCompletadas from "../components/layouts/EliminarTareasCompletadas"
 
 function Rutas() {

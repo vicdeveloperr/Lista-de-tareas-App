@@ -17,7 +17,7 @@ function ConfigurarTareas({ estadoTarea }) {
 			<form className="mt-5 sm:flex" onSubmit={agregarTarea}>
 				<input 
 					placeholder="Agregar detalles" 
-					className="w-full border-[1px] border-grisClaro p-2 rounded-xl focus:outline-[1px] outline-azulClaro" 
+					className="w-full border-[1px] border-grisClaro p-2 rounded-xl focus:outline-[1px] outline-azulClaro"
 					onChange={inputValueChange} 
 					value={valorInput}/>
 				<button 
@@ -26,22 +26,30 @@ function ConfigurarTareas({ estadoTarea }) {
 					Agregar
 				</button>
 			</form>
+			<p className="hidden" id="avisoTareaActiva">*Ya tienes está tarea activa</p>
 			<ListarTareas tareas={tareas} actualizarTareas={actualizarTareas} estadoTarea={estadoTarea}  />
 		</>
 	);
 
 	function agregarTarea(e) {
 		e.preventDefault();
+		let tareasActivas = leerTareasActivas();
 		// Actualizamos las tareas
-		leerTareas.push(valorInput);
-		actualizarTareasActivasGuardadas(leerTareas);
-		actualizarTareas(leerTareas);
-		actualizarValorInput("");
-		root.render(
-		  <BrowserRouter>
-		  	<App />
-		  </BrowserRouter>
-		);
+		let verificarTareaRepetida = tareasActivas.find(tareaActiva => valorInput == tareaActiva);
+		if(!verificarTareaRepetida) {
+			document.querySelector("#avisoTareaActiva").classList.add("hidden");
+			leerTareas.push(valorInput);
+			actualizarTareasActivasGuardadas(leerTareas);
+			actualizarTareas(leerTareas);
+			actualizarValorInput("");
+			root.render(
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+			);
+		}else {
+			document.querySelector("#avisoTareaActiva").classList.remove("hidden");
+		}
 	}
 
 	function inputValueChange(e) {

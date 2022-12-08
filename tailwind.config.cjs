@@ -7,8 +7,6 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
       'white': '#ffffff',
       'purple': '#3f3cbb',
       'midnight': '#121063',
@@ -18,6 +16,7 @@ module.exports = {
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
       'grisClaro': '#ddd',
+      'rojo': '#2222ff',
       'azulClaro': '#6161ff'
     }
   },
